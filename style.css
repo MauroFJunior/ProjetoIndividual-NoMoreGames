@@ -1,0 +1,38 @@
+#tela {
+    display: flex;
+    flex-direction: column;
+}
+
+.linha {
+    display: flex;
+}
+
+.caminho {
+    background-color: wheat;
+    width: 20vh;
+    height: 20vh;
+}
+
+.jogador {
+    background-color: blue;
+    width: 20vh;
+    height: 20vh;
+}
+
+.butVis {
+    width: 10vh;
+    height: 5vh;
+    background-color: darkslategray;
+    color: greenyellow;
+    border: none;
+    transition: scale 0.2s ease;
+}
+
+.butVis:hover {
+    scale: 1.05;
+}
+
+.butVis:active {
+    scale: .95;
+    background-color: rgb(39, 50, 50);
+}
