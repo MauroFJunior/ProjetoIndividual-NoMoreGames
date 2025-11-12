@@ -1,0 +1,180 @@
+body {
+    width: 100vw;
+    height: 100%;
+    margin: 0;
+    background-color: black;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #0E202F;
+    
+    
+}
+
+/* NAVBAR START */
+
+.navbar {
+    height: 15vh;
+    background-color: #091520;
+    color: white;
+    display: flex;
+    padding: 0 2%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-family: 'Major Mono Display';
+    font-size: 3vh;
+    border-left: 2px white solid;
+    width: 20%;
+    pointer-events: none;
+}
+
+.navbar li {
+    flex: 1;
+    list-style: none;
+    padding-left: 4.5%;
+}
+
+.navbar a {
+    display: inline-block;
+    color: #cccccc;
+    text-decoration: none;
+    font-size: 3vh;
+    margin: 0 6%;
+    font-family: 'Elms Sans';
+}
+
+.navbar .inativo:hover {
+    border-bottom: solid 2px white;
+    color: #ffffff;
+}
+
+.navbar .ativo {
+    color: #7DC5FC;
+    border-bottom: 2px solid #7DC5FC;
+    pointer-events: none;
+}
+
+.navbar .navRight {
+    width: 10%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3%;
+}
+
+.navRight .loginButton {
+    font-weight: bolder;
+    margin-top: 13%;
+    font-family: monospace;
+    border-radius: 3vh;
+    color: #7DC5FC;
+    border: .3vh inset #7DC5FC;
+    width: 100%;
+    height: 50%;
+    background-color: rgba(245, 222, 179, 0);
+    transition: background-color 0.2s ease;
+    font-size: 2vh;
+}
+
+.navRight .loginButton:hover {
+    background-color: #7DC5FC;
+    color: white;
+}
+
+.navRight .registerButton {
+    font-weight: bolder;
+    font-family: monospace;
+    color: #7DC5FC;
+    border: none;
+    background-color: rgba(245, 222, 179, 0);
+    transition: color 0.2s ease;
+    font-size: 1.5vh;
+}
+
+.navRight .registerButton:hover {
+    color: #cccccc
+}
+
+.subNavbar {
+    height: 6%;
+    width: 90%;
+    background-color: #0C1B27;
+    border-bottom: solid 2px #091520;
+    border-radius: 0 0 3vh 3vh ;
+    align-self: center;
+}
+
+/* NAVBAR END */
+
+/* MAIN START */
+
+.bannerPrincipal {
+    width: 100%;
+    height: 60vh;    
+    background-image: url('https://kevurugames.com/wp-content/uploads/2023/02/6-Key-Stages-of-Game-Development-back.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+.corpoMain {
+    width: 60%;
+    height: 100%;
+    margin-top: 2%;
+    align-self: center;
+}
+
+.bannerDois {
+    width: 100%;
+    height: 60vh;
+    background-color: black;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.382);
+    display: flex;
+}
+
+.conteudoBanner2 {
+    font-size: 2vh;
+    font-family: 'Elms sans';
+    flex: 1;
+    background-color: #091520;
+    color: white;
+    text-align: justify;
+    padding: 2%;
+    overflow-y: auto;
+}
+
+.conteudoBanner2 hr {
+    border: solid .2px white;
+    border-radius: 2vh;
+}
+
+.conteudoBanner2 h1{
+    font-size: 3vh;
+}
+
+.bannerDois #imgBannerDois {
+    background-image: url("https://sm.ign.com/t/ign_br/video/d/disco-elys/disco-elysium-official-mobile-announce-trailer_b59x.1200.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 65%;
+    height: 100%;
+    box-shadow: inset 0px 0px 50px 20px #091520e0;
+    transition: background-image 0.5s ease;
+}
+
+.conteudoMain {
+    margin-top: 2%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0);
+}

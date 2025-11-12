@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="butVis" onclick="setVisuals()">DEV MODE</button><br><br>
+    <button class="butVis" onclick="drop(0)">A</button>
+    <button class="butVis" onclick="drop(1)">B</button>
+    <button class="butVis" onclick="drop(2)">C</button>
+    <button class="butVis" onclick="drop(3)">D</button>
+    <div id="tela" style="font-size: 15vh; font-weight: 900; letter-spacing: 3vw; line-height: 20vh;"></div><br><br>
+</body>
+</html>
+<script>
+    var mapa = 
+    [
+    [0,0,0,0],
+    [0,0,0,0],
+    [0,0,0,0],
+    [0,0,0,0]
+    ];
+
+    var jogador1 = [];
+    var jogador2 = [];
+    var round = 0;
+    var visuals = false;
+
+    drawTela();
+
+    function setVisuals(){
+        if (visuals == false) visuals = true;
+        else visuals = false;
+
+        drawTela();
+        
+    }
+
+    function drop(col){
+        console.log('dropei')
+        for(var i = 0; i < mapa.length; i++) {
+            
+            if ( i < mapa.length-1 && mapa[i + 1][col] != 0) { 
+                mapa[i-1][col] = 0
+                round % 2 == 0 ? mapa[i][col] = 1 : mapa[i][col] = 2
+                 round++;
+                drawTela();
+                return;
+            } else {
+                i>0 ? mapa[i-1][col] = 0: round % 2 == 0 ? mapa[i][col] = 1 : mapa[i][col] = 2;
+                round % 2 == 0 ? mapa[i][col] = 1 : mapa[i][col] = 2
+            }
+        } 
+        
+        round++;
+
+        drawTela();
+    }
+
+    function drawTela(){
+        tela.innerHTML = '';
+        var linhaAtual = ''
+
+        if(visuals == false) {
+            for (i = 0; i < mapa[0].length; i++) {
+            tela.innerHTML += `${mapa[i]}<br>`
+            }
+        } else {
+            for (i = 0; i < mapa.length; i++) {
+                tela.innerHTML += `<div id="linha${i}" class='linha'></div>`;
+                linhaAtual = `linha${i}`;
+                for (j = 0; j < mapa[0].length; j++) {
+                    if (mapa[i][j] == 0) {
+                        document.getElementById(linhaAtual).innerHTML += `<div class='caminho'></div>`
+                    }
+                    else if (mapa[i][j] == 1) {
+                        document.getElementById(linhaAtual).innerHTML += `<div class='jogador1'></div>`
+                    }
+                    else if (mapa[i][j] == 2) {
+                        document.getElementById(linhaAtual).innerHTML += `<div class='jogador2'></div>`
+                    }
+                }
+            }
+        }
+    }
+
+</script>

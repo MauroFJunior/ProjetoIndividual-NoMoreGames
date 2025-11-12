@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="butVis" onclick="setVisuals()">DEV MODE</button>
+    <div id="tela" style="font-size: 15vh; font-weight: 900; letter-spacing: 3vw; line-height: 20vh;"></div><br><br>
+    <input type="text" id="get_input" oninput="checkInput()"><br><br>
+    <button onclick="move(get_input.value.split(''))">Start</button>
+</body>
+</html>
+<script>
+    var mapa = 
+    [
+    [1,0,0,0],
+    [0,0,0,0],
+    [0,0,0,0],
+    [0,0,0,2]
+    ];
+
+    var player = [0,0];
+    var visuals = false;
+
+    drawTela();
+
+    function setVisuals(){
+        if (visuals == false) visuals = true;
+        else visuals = false;
+
+        drawTela();
+        
+    }
+
+    function checkInput(){
+        if(!'cbed'.includes(get_input.value[get_input.value.length-1])) {
+            get_input.value = get_input.value.slice(0, -1);
+        }
+    }
+
+    function move(command){
+
+        for(let i = 0; i < command.length; i++) {   
+            setTimeout(() => checkCondition(command[i].toLowerCase()), i*300);
+        }  
+    }
+
+    function checkCondition(dir) {
+        var movimento = [0,0]
+        console.log('entrei no check')
+        if (dir == 'd') movimento = [0,1];
+        else if (dir == 'b') movimento = [1,0];
+        else if (dir == 'c') movimento = [-1,0];
+        else movimento = [0,-1];
+
+        console.log(player)
+
+        if
+        (
+        player[0] + movimento[0] >= 0 &&
+        player[0] + movimento[0] < mapa.length &&
+        mapa[player[0]+ movimento[0]][player[1] + movimento[1]] == 0
+        ) {
+            console.log('andei')
+            mapa[player[0]][player[1]] = 0;
+            mapa[player[0]+ movimento[0]][player[1] + movimento[1]] = 1;
+
+            player = [(player[0]+ movimento[0]),(player[1]+ movimento[1])];
+        } else if 
+        (
+        player[0] + movimento[0] >= 0 &&
+        player[0] + movimento[0] < mapa.length &&
+        mapa[player[0]+ movimento[0]][player[1] + movimento[1]] == 2
+        ) {
+
+            console.log('comi')
+            mapa[player[0]][player[1]] = 0;
+            mapa[player[0]+ movimento[0]][player[1] + movimento[1]] = 1;
+
+            player = [(player[0]+ movimento[0]),(player[1]+ movimento[1])];
+
+        } else {
+            if ((player[1] + movimento[1]) >= mapa[0].length) {
+                console.log('valid1')
+                mapa[player[0]][player[1]] = 0;
+                mapa[player[0]][0] = 1;
+
+                player = [(player[0]+ movimento[0]),0];
+
+            } else if ((player[1] + movimento[1]) < 0) {
+                console.log('valid2')
+                mapa[player[0]][player[1]] = 0;
+                mapa[player[0]][mapa[0].length-1] = 1;
+
+                player = [(player[0]+ movimento[0]),mapa[0].length-1];
+
+            } else if ((player[0] + movimento[0]) >= mapa.length) {
+                console.log('valid3')
+                mapa[player[0]][player[1]] = 0;
+                mapa[0][player[1]] = 1;
+
+                player = [0,(player[1]+ movimento[1])];
+
+            } else if ((player[0] + movimento[0]) < 0 ){
+                console.log('valid4')
+                mapa[player[0]][player[1]] = 0;
+                mapa[mapa[0].length-1][player[1]] = 1;
+
+                player = [mapa[0].length-1,(player[1]+ movimento[1])];
+
+            }
+            
+            console.log(player)
+        }
+        drawTela();
+    }
+
+    function drawTela(){
+        tela.innerHTML = '';
+        var linhaAtual = ''
+
+        if(visuals == false) {
+            for (i = 0; i < mapa[0].length; i++) {
+            tela.innerHTML += `${mapa[i]}<br>`
+            }
+        } else {
+            for (i = 0; i < mapa.length; i++) {
+                tela.innerHTML += `<div id="linha${i}" class='linha'></div>`;
+                linhaAtual = `linha${i}`;
+                for (j = 0; j < mapa[0].length; j++) {
+                    if (mapa[i][j] == 0) {
+                        document.getElementById(linhaAtual).innerHTML += `<div class='caminho'></div>`
+                    }
+                    else if (mapa[i][j] == 1) {
+                        document.getElementById(linhaAtual).innerHTML += `<div class='jogador'></div>`
+                    }
+                    else {
+                        document.getElementById(linhaAtual).innerHTML += `<div class='maca'></div>`
+                    } 
+                }
+            }
+        }
+    }
+
+</script>
