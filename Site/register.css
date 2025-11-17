@@ -1,0 +1,107 @@
+.containerRegister {
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://images.squarespace-cdn.com/content/v1/54fc8146e4b02a22841f4df7/1635684183961-EWXFAN2UFUXLAPA7JHPK/Art_of_Josan_Gonzales+_9.jpeg?format=1500w");
+    background-size: cover;
+    background-position: 0 -30vh;
+}
+
+
+.cardLogin {
+    height: 90%;
+    width: 35%;
+    margin-right: 50%;
+    background-color: #091520e9;
+    border-radius: 1vh;
+    box-shadow: 0 0 20px 15px rgba(0, 0, 0, 0.19);
+}
+
+.inputsLogin {
+    margin-top: 5%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 3vh;
+    font-family: 'Elms sans';
+    color: #cccccc;
+    padding: 0 3% 0 0;
+}
+
+.campoLogin {
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.campoLogin input {
+    width: 100%;
+    height: 30%;
+    border-radius: .5vh;
+    font-size: 3vh;
+    background-color: #373f47;
+    border: none;
+    transform: filter 0.2s ease-in-out;
+    color: #ccc;
+    padding: 2%;
+}
+
+.campoLogin input:hover {
+    filter: brightness(1.3);
+}
+
+.botaoLogin {
+    font-weight: bolder;
+    font-family: monospace;
+    border-radius: .5vh;
+    color: #cccccc;
+    border: none;
+    width: 60%;
+    height: 10%;
+    background: #166ba8;
+    background: linear-gradient(65deg,rgba(22, 107, 168, 1) 29%, #7DC5FC 100%);
+    transition: filter 0.2s ease;
+    font-size: 2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 3vh;
+}
+
+.botaoLogin:hover {
+    filter: brightness(1.3);
+}
+
+#semConta{
+    text-align: center;
+    font-size: 2vh;
+    
+}
+
+#semConta a{
+    font-size: 1.8vh;
+    font-weight: bolder;
+    font-family: monospace;
+    text-decoration: none;
+    color: #7DC5FC;
+    background-color: rgba(245, 222, 179, 0);
+    transition: color 0.2s ease;
+    cursor: pointer;
+    text-align: center;
+    transition: color .2s ease;
+    transition: border .2s ease;
+    margin-bottom: 2vh;
+}
+
+#semConta a:hover {
+    color: white;
+    border-bottom: solid 2px white;
+}

@@ -14,8 +14,12 @@ main {
     display: flex;
     flex-direction: column;
     background: #0E202F;
+    z-index: -2;
     
-    
+}
+
+input {
+    font-family: 'Elms Sans';
 }
 
 /* NAVBAR START */
@@ -30,7 +34,7 @@ main {
     align-items: center;
 }
 
-.navbar .logo {
+.logo {
     font-family: 'Major Mono Display';
     font-size: 3vh;
     border-left: 2px white solid;
@@ -41,7 +45,7 @@ main {
 .navbar li {
     flex: 1;
     list-style: none;
-    padding-left: 4.5%;
+    padding-left: 4%;
 }
 
 .navbar a {
@@ -75,7 +79,8 @@ main {
 
 .navRight .loginButton {
     font-weight: bolder;
-    margin-top: 13%;
+    margin-top: 10%;
+    margin-left: 0;
     font-family: monospace;
     border-radius: 3vh;
     color: #7DC5FC;
@@ -85,6 +90,9 @@ main {
     background-color: rgba(245, 222, 179, 0);
     transition: background-color 0.2s ease;
     font-size: 2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .navRight .loginButton:hover {
@@ -100,6 +108,8 @@ main {
     background-color: rgba(245, 222, 179, 0);
     transition: color 0.2s ease;
     font-size: 1.5vh;
+    cursor: pointer;
+    text-align: center;
 }
 
 .navRight .registerButton:hover {
@@ -122,9 +132,8 @@ main {
 .bannerPrincipal {
     width: 100%;
     height: 60vh;    
-    background-image: url('https://kevurugames.com/wp-content/uploads/2023/02/6-Key-Stages-of-Game-Development-back.webp');
+    background-image: url('https://images.squarespace-cdn.com/content/v1/54fc8146e4b02a22841f4df7/1635684226407-OF0F1FSI4WGTQQXU3OXO/Art_of_Josan_Gonzales+_19.jpeg?format=2500w');
     background-size: cover;
-    background-position: center;
 }
 
 .corpoMain {
@@ -177,4 +186,27 @@ main {
     width: 100%;
     height: 100%;
     background-color: rgba(255, 255, 255, 0);
+}
+
+/* FOOTER START */
+
+.footer {
+    height: 15vh;
+    background-color: #091520;
+    color: white;
+    display: flex;
+    padding: 0 2%;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Elms Sans';
+}
+
+.footer li {
+    flex: 1;
+    list-style: none;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #ccc
 }
