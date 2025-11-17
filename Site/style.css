@@ -136,6 +136,21 @@ input {
     background-size: cover;
 }
 
+#sobre {
+    background-image: url(./media/sobre.webp);
+    background-position: 0 -10vh;
+}
+
+#jogos {
+    background-image: url(./media/jogos.webp);
+    background-position: 0 -15vh;
+}
+
+#creative {
+    background-image: url(./media/creative.webp);
+    background-position: 0 -50vh;
+}
+
 .corpoMain {
     width: 60%;
     height: 100%;
@@ -172,7 +187,7 @@ input {
 }
 
 .bannerDois #imgBannerDois {
-    background-image: url("https://sm.ign.com/t/ign_br/video/d/disco-elys/disco-elysium-official-mobile-announce-trailer_b59x.1200.jpg");
+    background-image: url(./media/discoelysium.webp);
     background-size: cover;
     background-position: center;
     width: 65%;
