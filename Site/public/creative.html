@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Major+Mono+Display&display=swap" rel="stylesheet">
@@ -16,15 +16,15 @@
             <li class="navButtons">
                 <a class="inativo" href="index.html">HOME</a>
                 <a class="inativo" href="sobre.html">SOBRE</a>
-                <a class="ativo" href="">JOGOS</a>
-                <a class="inativo" href="creative.html">CREATIVE</a>
+                <a class="inativo" href="jogos.html">JOGOS</a>
+                <a class="ativo" href="">CREATIVE</a>
             </li>
             <div class="navRight">
                 <a class="loginButton" href="./login.html">LOG IN</a>
                 <a class="registerButton"  href="./register.html">CADASTRE-SE</a>
             </div>
         </div>
-        <div class="bannerPrincipal" id="jogos">
+        <div class="bannerPrincipal" id="creative">
 
         </div>
 
@@ -53,19 +53,3 @@
     </main>
 </body>
 </html>
-
-<script>
-
-    imgs = [
-        "url(./media/discoelysium.webp)", 
-        "url(./media/hylics.png)",
-        "url(./media/balatro.jpg)",
-        "url(./media/gris.jpg)"
-    ]
-
-    var i = 0;
-    setInterval(()=> {
-        i >= imgs.length-1  ? i = 0 : i++; 
-        imgBannerDois.style.backgroundImage = imgs[i]
-    }, 3000)
-</script>

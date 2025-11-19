@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Major+Mono+Display&display=swap" rel="stylesheet">
@@ -19,9 +19,14 @@
                 <a class="inativo" href="jogos.html">JOGOS</a>
                 <a class="inativo" href="creative.html">CREATIVE</a>
             </li>
-            <div class="navRight">
+            <div class="navRight" id="navRightGuest">
                 <a class="loginButton" href="./login.html">LOG IN</a>
-                <a class="registerButton"  href="./register.html">CADASTRE-SE</a>
+                <a class="registerButton"  href="./cadastro.html">CADASTRE-SE</a>
+            </div>
+            <div class="navRight" id="navRightUser">
+                <div class="userIcon" onclick="deslogar()">
+                  <img src="../assets/imgs/user.png" alt="">
+                </div>
             </div>
         </div>
         <div class="bannerPrincipal">
@@ -65,15 +70,28 @@
 <script>
 
     imgs = [
-        "url(./media/discoelysium.webp)", 
-        "url(./media/hylics.png)",
-        "url(./media/balatro.jpg)",
-        "url(./media/gris.jpg)"
+        "url(./assets/imgs/discoelysium.webp)", 
+        "url(./assets/imgs/hylics.png)",
+        "url(./assets/imgs/balatro.jpg)",
+        "url(./assets/imgs/gris.jpg)"
     ]
 
     var i = 0;
+    imgBannerDois.style.backgroundImage = imgs[i]
     setInterval(()=> {
         i >= imgs.length-1  ? i = 0 : i++; 
         imgBannerDois.style.backgroundImage = imgs[i]
     }, 3000)
+
+    window.onload = () => {
+      if(sessionStorage.ID_USUARIO) {
+        navRightGuest.style.display = 'none'
+        navRightUser.style.display = 'block'
+      }
+    }
+
+    function deslogar(){
+      sessionStorage.clear();
+      window.location = './index.html';
+    }
 </script>

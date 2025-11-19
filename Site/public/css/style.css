@@ -116,6 +116,25 @@ input {
     color: #cccccc
 }
 
+.navRight .userIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 13%;
+    height: 60%;
+    width: 60%;
+    border-radius: 1vh;
+}
+
+.userIcon img {
+    width: 80%;
+    height: 100%;
+    filter: brightness(4.5);
+}
+#navRightUser {
+    display: none;
+}
+
 .subNavbar {
     height: 6%;
     width: 90%;
@@ -137,17 +156,17 @@ input {
 }
 
 #sobre {
-    background-image: url(./media/sobre.webp);
+    background-image: url(../assets/imgs/sobre.webp);
     background-position: 0 -10vh;
 }
 
 #jogos {
-    background-image: url(./media/jogos.webp);
+    background-image: url(../assets/imgs/jogos.webp);
     background-position: 0 -15vh;
 }
 
 #creative {
-    background-image: url(./media/creative.webp);
+    background-image: url(../assets/imgs/creative.webp);
     background-position: 0 -50vh;
 }
 
@@ -187,7 +206,7 @@ input {
 }
 
 .bannerDois #imgBannerDois {
-    background-image: url(./media/discoelysium.webp);
+    background-image: url(./assets/imgs/discoelysium.webp);
     background-size: cover;
     background-position: center;
     width: 65%;
@@ -224,4 +243,44 @@ input {
 .footer a {
     text-decoration: none;
     color: #ccc
+}
+
+.alerta_erro{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card_erro {
+  display: none;
+  background-color: #091520e9;
+  color: #7DC5FC;
+  width: 20vw;
+  position: absolute;
+  border: solid 2px #7DC5FC;
+  margin-top: 16.5%;
+  border-radius: 1vh;
+  padding: 10px;
+  margin-right: 10%;
+  box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.19);
+  font-family: 'Elms Sans';
+}
+
+.card_erro #mensagem_erro{
+  font-weight: 500;
+  font-size: 3vh;
+}
+
+.loading-div {
+    width: 3vw;
+    height: 6vh;
+    margin: 0;
+    position: absolute;
+    margin-left: 16vw;
+    margin-top: 53vh;
+    display: none;
+}
+
+.loading-div img{
+    width: 100%;
+    height: 100%;
 }

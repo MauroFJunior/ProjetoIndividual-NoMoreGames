@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/sessao.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Major+Mono+Display&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <main>
+        <div class="navbar">
+            <div class="logo">NO<br>MORE <br> GAMES</div>
+            <li class="navButtons">
+                <a class="inativo" href="./index.html">HOME</a>
+                <a class="inativo" href="sobre.html">SOBRE</a>
+                <a class="inativo" href="jogos.html">JOGOS</a>
+                <a class="inativo" href="creative.html">CREATIVE</a>
+            </li>
+            <div class="navRight">
+                <a class="loginButton" href="./login.html">LOG IN</a>
+                <a class="registerButton" href="./register.html">CADASTRE-SE</a>
+            </div>
+        </div>
+        <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+        </div>
+        <div class="containerLogin">
+            <div class="cardLogin">
+                <div id="div_aguardar" class="loading-div">
+                    <img src="./assets/circle-loading.gif" id="loading-gif">
+                </div>
+                <div class="inputsLogin">
+                    <div class="campoLogin">
+                        <label for="email_input">Conectar-se com email</label>
+                        <input type="text" id="email_input">
+                    </div>
+                    <div class="campoLogin">
+                        <label for="senha_input">Senha</label>
+                        <input type="password" class="campoLogin" id="senha_input">
+                    </div>
+                    <button class="botaoLogin" onclick="entrar()">Conectar</button>
+                    <div class="campoLogin" id="semConta">
+                        Ainda não tem uma conta?
+                        <a class="registerButton" href="./cadastro.html">Cadastre-se</a>
+                    </div>
+
+                </div>
+            </div>
+             
+
+            <div id="div_erros_login"></div>
+        </div>
+
+        <div class="footer">
+            <div class="footerEsquerda">
+                © 2025 Mauro Junior. Todos os direitos reservados.
+            </div>
+            <div class="footerMeio">
+                <li class="navButtons">
+                    <a class="inativo" href="./index.html">HOME</a> |
+                    <a class="inativo" href="./sobre.html">SOBRE</a> |
+                    <a class="inativo" href="./jogos.html">JOGOS</a> |
+                    <a class="inativo" href="./creative.html">CREATIVE</a>
+                </li>
+            </div>
+            <div class="footerDireita">
+                <div class="logo">NO<br>MORE <br> GAMES</div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
+<script>
+
+
+    function entrar() {
+        aguardar();
+
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Preencha os campos para acessar sua conta!";
+            finalizarAguardar();
+            setTimeout(sumirMensagem, 3000)
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 3000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./index.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    cardErro.style.display = "block"
+                    mensagem_erro.innerHTML = texto;
+                    div_aguardar.style.display = 'none';
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>
