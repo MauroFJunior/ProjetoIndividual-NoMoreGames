@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="dropDownUser" id="dropDownUser">
-            <div class="botaoDropdown" id="mudarAvatar">Mudar avatar</div>
+            <div class="botaoDropdown" id="mudarAvatar" onclick="mudarAvatar()">Mudar avatar</div>
             <div class="botaoDropdown" id="Sair" onclick="deslogar()">Sair</div>
         </div>
         <div class="bannerPrincipal" id="creative">
@@ -81,6 +81,10 @@
             dropDownUser.style.marginTop = '7%';
         }
         
+    }
+
+    function mudarAvatar(){
+        window.location = './avatar.html'
     }
 
     function deslogar(){

@@ -72,7 +72,11 @@ function cadastrar(req, res) {
                     console.log(
                         "\nHouve um erro ao realizar o cadastro! Erro: ",
                         erro.sqlMessage
+                        
                     );
+                    if (erro.sqlMessage.includes('Duplic')) {
+                        res.status(409).json(erro.sqlMessage);
+                    } else
                     res.status(500).json(erro.sqlMessage);
                 }
             );

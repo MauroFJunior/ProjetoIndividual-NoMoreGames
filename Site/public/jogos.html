@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="dropDownUser" id="dropDownUser">
-            <div class="botaoDropdown" id="mudarAvatar">Mudar avatar</div>
+            <div class="botaoDropdown" id="mudarAvatar" onclick="mudarAvatar()">Mudar avatar</div>
             <div class="botaoDropdown" id="Sair" onclick="deslogar()">Sair</div>
         </div>
         <div class="bannerPrincipal" id="jogos">
@@ -70,6 +70,8 @@
         navRightUser.style.display = 'block'
         userAvatar.src = sessionStorage.AVATAR;
         userName.innerHTML = sessionStorage.NOME_USUARIO
+      } else {
+        window.location = '/login.html'
       }
     }
 
@@ -81,6 +83,10 @@
             dropDownUser.style.marginTop = '7%';
         }
         
+    }
+
+    function mudarAvatar(){
+        window.location = './avatar.html'
     }
 
     function deslogar(){
