@@ -25,6 +25,7 @@ function autenticar(req, res) {
                             email: resultadoAutenticar[0].email,
                             nome: resultadoAutenticar[0].nome,
                             senha: resultadoAutenticar[0].senha,
+                            avatar: resultadoAutenticar[0].url,
                         });
 
                     } else if (resultadoAutenticar.length == 0) {
@@ -78,7 +79,28 @@ function cadastrar(req, res) {
     }
 }
 
+function updateAvatar(req, res) {
+    var id = req.body.id;
+    var avatar = req.body.avatar;
+
+    if (id == undefined) {
+        res.status(400).send("ID UNDEFINED!");
+    } else if ( avatar == undefined) {
+        res.status(400).send("AVATAR UNDEFINED!");
+    } else {
+        usuarioModel.updateAvatar(id, avatar)
+            .then(function (resultado) {
+                res.json(resultado);
+            })
+            .catch(function (erro) {
+                console.log("Erro no updateAvatar:", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    updateAvatar
 }

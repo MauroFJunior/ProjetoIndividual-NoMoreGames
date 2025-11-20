@@ -1,0 +1,40 @@
+.voltarButton {
+  color: #ccc;
+  font-size: 3vh;
+  font-family: 'Elms Sans';
+  cursor: pointer;
+  margin-bottom: 5%;
+}
+.voltarButton:hover {
+  filter: brightness(1.2);
+}
+.conteudoAvatar {
+  min-height: 85.5vh;
+  height: fit-content;
+}
+
+.escolhaAvatar{
+  width: 100%;
+  height: auto;
+  display: grid;
+  gap: 2%;
+  grid-template-columns: repeat(5,1fr);
+}
+
+.escolhaAvatar img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  display: block;
+}
+
+.escolhaAvatar img:hover {
+  filter: brightness(1.1);
+  outline: solid 5px #7DC5FC;
+}
+
+.espacoAvatar {
+  width: 100%;
+  height: 100%;
+  background-color: #313131;
+}

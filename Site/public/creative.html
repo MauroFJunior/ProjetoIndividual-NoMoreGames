@@ -19,10 +19,20 @@
                 <a class="inativo" href="jogos.html">JOGOS</a>
                 <a class="ativo" href="">CREATIVE</a>
             </li>
-            <div class="navRight">
+            <div class="navRight" id="navRightGuest">
                 <a class="loginButton" href="./login.html">LOG IN</a>
-                <a class="registerButton"  href="./register.html">CADASTRE-SE</a>
+                <a class="registerButton"  href="./cadastro.html">CADASTRE-SE</a>
             </div>
+            <div class="navRight" id="navRightUser">
+                <div class="userIcon" onclick="dropDown()">
+                    <div id="userName">Malware</div>
+                    <img src="../assets/imgs/user.png" id="userAvatar" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="dropDownUser" id="dropDownUser">
+            <div class="botaoDropdown" id="mudarAvatar">Mudar avatar</div>
+            <div class="botaoDropdown" id="Sair" onclick="deslogar()">Sair</div>
         </div>
         <div class="bannerPrincipal" id="creative">
 
@@ -53,3 +63,28 @@
     </main>
 </body>
 </html>
+<script>
+        window.onload = () => {
+      if(sessionStorage.ID_USUARIO) {
+        navRightGuest.style.display = 'none'
+        navRightUser.style.display = 'block'
+        userAvatar.src = sessionStorage.AVATAR;
+        userName.innerHTML = sessionStorage.NOME_USUARIO
+      }
+    }
+
+    function dropDown(){
+        dropDownUser.style.display = 'flex'
+        if (dropDownUser.style.marginTop === '7%') {
+            dropDownUser.style.marginTop = '0';
+        } else {
+            dropDownUser.style.marginTop = '7%';
+        }
+        
+    }
+
+    function deslogar(){
+      sessionStorage.clear();
+      window.location = './index.html';
+    }
+</script>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/avatar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Major+Mono+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+
+        <div class="corpoMain">
+            <div class="voltarButton" onclick="voltar()">
+                Voltar
+            </div>
+            <div class="conteudoAvatar">
+                <div class="escolhaAvatar">
+                    <img src="./assets/imgs/icon1.webp" alt="" onclick="mudarAvatar(1)">
+                    <img src="./assets/imgs/icon2.webp" alt="" onclick="mudarAvatar(2)">
+                    <img src="./assets/imgs/icon3.webp" alt="" onclick="mudarAvatar(3)">
+                    <img src="./assets/imgs/icon4.webp" alt="" onclick="mudarAvatar(4)">
+                    <img src="./assets/imgs/icon5.webp" alt="" onclick="mudarAvatar(5)">
+
+                </div>
+            </div>
+        </div>
+        
+       
+    </main>
+</body>
+</html>
+
+<script>
+    function voltar() {
+        window.location = './index.html';
+    }
+
+    function mudarAvatar(num){
+        sessionStorage.AVATAR = `./assets/imgs/icon${num}.webp`
+
+        fetch("/usuarios/updateAvatar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: sessionStorage.ID_USUARIO,
+                avatar: sessionStorage.AVATAR
+            })
+        })
+        .then(res => {
+            if (res.ok) {
+                console.log("Avatar atualizado!");
+                window.location = './index.html';
+            } else {
+                res.text().then(txt => console.error(txt));
+            }
+        })
+        .catch(err => {
+            console.error("Erro na requisição", err);
+        });
+        
+    }
+</script>
