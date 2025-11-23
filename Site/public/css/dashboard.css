@@ -1,0 +1,199 @@
+main {
+    background-image: url(../assets/imgs/fundoDash.webp);
+    background-size: cover;
+}
+
+
+.corpoMain {
+    margin: 0; 
+}
+
+.corpoDash {
+    background-color: #0E202Fd0;
+    width: 100%;
+    min-height: 90vh;
+    max-height: fit-content;
+    margin-top: 0;
+    margin-bottom: 4%;
+    align-self: center;
+    border-radius: 2vh;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.485);
+}
+
+.headerDash {
+    padding: 2%;
+    margin-top: 2%;
+    width: 96%;
+    height: 26%;
+    display: flex;
+    background-color: #091520;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2%;
+    border-top-right-radius: 2vh;
+    border-top-left-radius: 2vh;
+
+}
+
+.headerDashDireita {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.userName {
+    width: 92%;
+    height: 30%;
+    display: flex;
+    padding: 0 1%;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: 'Elms sans';
+    color: #ccc;
+    font-size: 5vh;
+}
+
+.iconUser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconUser img {
+    width: 25vh;
+    height: 100%;
+    outline: solid 1vh greenyellow;
+    border-radius: 1vh;
+    transition: filter 0.3s ease;
+    cursor: pointer;
+}
+
+.badge {
+    width: 6vh;
+    height: 6vh;
+}
+
+.headerDash img:hover {
+    filter: brightness(1.2);
+}
+
+
+.containerHeader {
+    margin-top: 6%;
+    flex: 1;
+    border-radius: .5vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2%;
+}
+
+.topoHeader {
+    display: flex;
+    flex-direction: row;
+}
+
+.kpiHeader {
+    width: 30%;
+    max-width: 30%;
+    height: 14vh;
+    max-height: 14vh;
+    border-radius: 1vh;
+    font-size: 2vh;
+    outline: 1px inset #7DC5FC;
+    background-color: #0E202F;
+    font-family: 'Elms sans';
+    color: #ccc;
+    text-align: center;
+}
+
+.navbarCorpoDash {
+    width: 100%;
+    height: 8vh;
+    background-color: #0E202F;
+    display: flex;
+}
+
+.navbarCorpoDash .botao {
+    flex: 1;
+    color: #ccc;
+    font-family: 'elms sans';
+    background-color: #0E202F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+}
+
+.navbarCorpoDash .ativo {
+    background-color: #091520;
+}
+
+.navbarCorpoDash .inativo:hover {
+    filter: brightness(1.1);
+    cursor: pointer;
+}
+
+.graficosDash {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.graficosDash #graphOverview {
+    width: 33%;
+    height: 33%;
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #091520;
+    border-radius: 1vh;
+    
+}
+
+#graphOverview canvas {
+    padding: 5%;
+}
+
+.tituloOverview {
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0E202F;
+    color: #ccc;
+    font-family: "Elms sans";
+    font-weight: 200;
+}
+
+.tituloTendency {
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0E202F;
+    color: #ccc;
+    font-family: "Elms sans";
+    font-weight: 200;
+}
+
+.graficosDash #graphTendency {
+    width: 100%;
+    height: 100%;
+    max-height: 42vh;
+    margin: 2%;
+    border-radius: 1vh;
+}
+
+.graficosDash #graphTendency canvas {
+    background-color: #091520;
+    padding: 5%;
+    border-bottom-left-radius: 1vh;
+    border-bottom-right-radius: 1vh;
+}
