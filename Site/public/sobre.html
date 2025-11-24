@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>No More Games</title>
-    <link rel="shortcut icon" href="assets/icon/faviconNMG.png" type="image/x-icon">    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="assets/icon/faviconNMG.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/sobre.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Major+Mono+Display&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <main>
         <div class="navbar">
@@ -21,7 +27,7 @@
             </li>
             <div class="navRight" id="navRightGuest">
                 <a class="loginButton" href="./login.html">LOG IN</a>
-                <a class="registerButton"  href="./cadastro.html">CADASTRE-SE</a>
+                <a class="registerButton" href="./cadastro.html">CADASTRE-SE</a>
             </div>
             <div class="navRight" id="navRightUser">
                 <div class="userIcon" onclick="dropDown()">
@@ -39,11 +45,65 @@
         </div>
 
         <div class="corpoMain">
+            <div class="ctaMeio">
+                    MINHA HISTÓRIA PESSOAL COM O DESENVOLVIMENTO DE JOGOS
+                </div>
             <div class="conteudoMain">
+                <div class="conteudoSobre">
+                    Meu nome é Mauro Junior, tenho 23 anos no momento de criação deste site e tenho contato com
+                    videogames desde sempre.<br><br>
+                    A <span>NO MORE GAMES</span> é a primeira tentativa de um aluno de Análise e Desenvolvimento de
+                    Sistemas em traduzir para artefatos digitais sua opinião, interesse e carinho acerca do tema de
+                    desenvolvimento de jogos.
+                    <br><br>
 
+                    <hr> <br>
+                    <div class="timelinePoint"></div> 
+                    Minha primeira memória afetiva com videogames acontece cedo, na
+                    segunda casa em que me lembro de ter morado. Nela, eu e meu irmão ganhamos um Playstation 1, nosso
+                    primeiro console. Lembro de passar as noites antes da escolinha jogando Yu-Gi-Oh Forbidden Memories
+                    com minha mãe. 
+                    <br><br>
+                    <div class="timelinePoint"></div> 
+                    Minha infância, então, acabou sempre girando em torno de
+                    videogames, arte e tecnologia. Não muito depois do PS1, ganhei meu PS2; ao mesmo tempo em que
+                    explorava cada vez mais meu gosto por desenhar e descobrir as funcionalidades do velho notebook de
+                    trabalho do meu pai. 
+                    <br><br>
+                    <div class="timelinePoint"></div> 
+                    O próximo turning point da minha vida foi bem perto do fim da
+                    infância, quando ganhei meu computador. Esse evento acabou por exacerbar todos os pilares da minha
+                    personalidade: eu tinha acesso a mais jogos, que me deixavam cada vez mais inspirado a fazer arte,
+                    que por sua vez resultava em ainda mais vontade de jogar e mais estudo para entender o funcionamento
+                    do computador e dos jogos. 
+                    <br><br>
+                    <div class="timelinePoint"></div> 
+                    Com todas as peças em seus lugares, não demorou muito para eu me
+                    tocar que todo jogo precisava ser desenvolvido. Essa descoberta se deu com um pequeno programa de
+                    computador chamado RPG Maker. A partir daí, se inicia a jornada que perdura até hoje: preciso
+                    aprender a fazer sprites, depois a programar a movimentação deles, e talvez um script de movimento e
+                    então... mas aí... e também, depois... !!! 
+                    <br><br>
+                    <div class="timelinePoint"></div> 
+                    Estrago feito. O que já era um interesse se torna uma paixão. Sou
+                    muito grato por esse momento, pois hoje percebo o quanto o interesse não só por jogar, mas também
+                    por desenvolver, me ajudou a chegar onde estou hoje: a vontade constante de iterar e testar scripts,
+                    engines, ideias e programas são combustíveis infinitos na busca por conhecimento. 
+                    <br><br>
+                    <hr> 
+                    <br> 
+                    Hoje, carrego comigo um apreço indescritível pelo mundo dos jogos. Considero essa, a
+                    oitava arte, a mais completa e mais tocante de todas. Esse site nasce, então, com o propósito de
+                    expor ao mundo a minha visão sobre videogames e o bem que eles podem trazer a uma pessoa que busca
+                    se desenvolver. 
+                    <div class="minhaFoto">
+                        <img src="./assets/imgs/eu.jpg" alt="">
+                        Eu, 12 anos atrás
+                    </div>
+                </div>
             </div>
         </div>
-        
+
         <div class="footer">
             <div class="footerEsquerda">
                 © 2025 Mauro Junior. Todos os direitos reservados.
@@ -53,7 +113,7 @@
                     <a class="inativo" href="./index.html">HOME</a> |
                     <a class="inativo" href="./sobre.html">SOBRE</a> |
                     <a class="inativo" href="./jogos.html">JOGOS</a> |
-                    <a class="inativo" href="./creative.html">CREATIVE</a> 
+                    <a class="inativo" href="./creative.html">CREATIVE</a>
                 </li>
             </div>
             <div class="footerDireita">
@@ -62,33 +122,34 @@
         </div>
     </main>
 </body>
+
 </html>
 <script>
-        window.onload = () => {
-      if(sessionStorage.ID_USUARIO) {
-        navRightGuest.style.display = 'none'
-        navRightUser.style.display = 'block'
-        userAvatar.src = sessionStorage.AVATAR;
-        userName.innerHTML = sessionStorage.NOME_USUARIO
-      }
+    window.onload = () => {
+        if (sessionStorage.ID_USUARIO) {
+            navRightGuest.style.display = 'none'
+            navRightUser.style.display = 'block'
+            userAvatar.src = sessionStorage.AVATAR;
+            userName.innerHTML = sessionStorage.NOME_USUARIO
+        }
     }
 
-    function dropDown(){
+    function dropDown() {
         dropDownUser.style.display = 'flex'
         if (dropDownUser.style.marginTop === '7%') {
             dropDownUser.style.marginTop = '0';
         } else {
             dropDownUser.style.marginTop = '7%';
         }
-        
+
     }
 
-    function perfil(){
+    function perfil() {
         window.location = './dashboard/dashboard.html'
     }
 
-    function deslogar(){
-      sessionStorage.clear();
-      window.location = './index.html';
+    function deslogar() {
+        sessionStorage.clear();
+        window.location = './index.html';
     }
 </script>

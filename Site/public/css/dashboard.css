@@ -117,7 +117,8 @@ main {
 }
 
 .navbarCorpoDash .botao {
-    flex: 1;
+    width: 25%;
+    height: 100%;
     color: #ccc;
     font-family: 'elms sans';
     background-color: #0E202F;

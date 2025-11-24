@@ -1,0 +1,58 @@
+.conteudoMain {
+    border: 0;
+    background-color: #091520;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: .3vh solid #7DC5FC;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.382);
+}
+.conteudoSobre {
+    width: 80%;
+    min-height: 100vh;
+    height: auto;
+    padding: 6% 2%;
+    font-family: "Elms Sans";
+    color: #ccc;
+    font-size: 3vh;
+    text-align: justify;
+}
+
+.conteudoSobre span {
+    font-family: "MAJOR MONO DISPLAY";
+    word-spacing: -2vh;
+    border-left: 2px white solid;
+    font-size: 4vh;
+}
+
+.conteudoSobre span {
+    font-family: "MAJOR MONO DISPLAY";
+    word-spacing: -2vh;
+    border-left: 2px white solid;
+    font-size: 3vh;
+}
+
+.listaRecomendacoes {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 2%;
+}
+
+.thumbnail {
+    flex: 1;
+    font-size: 2vh;
+}
+
+.thumbnail img{
+    width: 100%;
+    height: auto;
+    transition: filter 0.2s ease;
+    transition: transform 0.2s ease;
+}
+
+.thumbnail img:hover {
+    filter: brightness(1.2);
+    transform: scale(1.02);
+}

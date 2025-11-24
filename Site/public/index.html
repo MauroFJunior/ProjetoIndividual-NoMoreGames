@@ -42,15 +42,55 @@
 
         <div class="corpoMain">
             <div class="bannerDois">
+                <div class="tituloImgBannerDois" id="tituloB2">Disco Elysium - ZA/UM</div>
                 <div id="imgBannerDois"></div>
                 <div class="conteudoBanner2">
                     <center>
-                    <h1>Game dev como forma de expressão criativa</h1></center>
-                    <hr> Integer eget sodales erat, eu gravida ligula. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sem erat, rhoncus ac ipsum eget, mollis volutpat sapien. Quisque feugiat metus eget sapien placerat scelerisque. Nunc a commodo ipsum. Quisque molestie dictum enim blandit aliquet. Nunc congue, leo vel pulvinar tincidunt, nunc elit hendrerit leo, a interdum enim urna at magna. Mauris lobortis dolor ut mollis aliquam.
+                    <h1>O DIÁLOGO DO DESENVOLVIMENTO DE JOGOS</h1></center>
+                    <hr> 
+                    “A alegria da descoberta é uma das alegrias fundamentais do próprio ato de jogar. Não só a alegria de encontrar segredos dentro do jogo, mas também a de desvendar a visão do desenvolvedor. É aquele momento ‘Aha!’ em que tudo passa a fazer sentido e, por trás do mundo, o jogador sente o toque de outra mente criativa. Para que essa alegria seja verdadeira, porém, ela precisa permanecer oculta à primeira vista — não gravada como mandamentos em pedra, mas revelada, pouco a pouco, conforme o jogador explora as regras do jogo.” <br>
+                    <span>― Derek Yu, Criador de Spelunky</span> 
                 </div>
             </div>
             <div class="conteudoMain">
-
+                <div class="ctaMeio">
+                    A <span>NO MORE GAMES</span> ABRIGA IDEIAS SOBRE DESENVOLVIMENTO DE JOGOS COMO UMA FERRAMENTA DE EXPRESSÃO CRIATIVA, COM O OBJETIVO DE...
+                </div>
+                <div class="pilares">
+                    <div class="pilar criar">
+                        <div class="iconePilar">
+                            <img src="./assets/icon/criar.png" alt="">
+                        </div> 
+                        <div class="mensagemPilar">
+                            <div class="tituloPilar">CRIAR</div>
+                            <div class="textoPilar">
+                                Explorar a criação de jogos como uma ferramenta de expressão criativa e de desenvolvimento pessoal.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pilar sentir">
+                        <div class="iconePilar">
+                            <img src="./assets/icon/sentir.png" alt="">
+                        </div> 
+                        <div class="mensagemPilar">
+                            <div class="tituloPilar">SENTIR</div>
+                            <div class="textoPilar">
+                                Experiênciar os mundos criados como pacotes completos de criatividade, intenção e emoção.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pilar descobrir">
+                        <div class="iconePilar">
+                            <img src="./assets/icon/descobrir.png" alt="">
+                        </div> 
+                        <div class="mensagemPilar">
+                            <div class="tituloPilar">DESCOBRIR</div>
+                            <div class="textoPilar">
+                                Descobrir e se fazer imerso na visão, nas histórias e nas idéias que habitam em outras pessoas.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -77,18 +117,19 @@
 <script>
 
     imgs = [
-        "url(./assets/imgs/discoelysium.webp)", 
-        "url(./assets/imgs/hylics.png)",
-        "url(./assets/imgs/balatro.jpg)",
-        "url(./assets/imgs/gris.jpg)"
+        ["url(./assets/imgs/discoelysium.webp)", 'Disco Elysium — ZA/UM'], 
+        ["url(./assets/imgs/hylics.png)", "Hylics — Mason Lindroth"],
+        ["url(./assets/imgs/balatro.jpg)", "Balatro — LocalThunk"],
+        ["url(./assets/imgs/gris.jpg)", "Gris — Nomada Studio"]
     ]
 
     var i = 0;
     imgBannerDois.style.backgroundImage = imgs[i]
     setInterval(()=> {
         i >= imgs.length-1  ? i = 0 : i++; 
-        imgBannerDois.style.backgroundImage = imgs[i]
-    }, 3000)
+        imgBannerDois.style.backgroundImage = imgs[i][0]
+        tituloB2.innerHTML = imgs[i][1]
+    }, 3500)
 
     window.onload = () => {
       if(sessionStorage.ID_USUARIO) {
