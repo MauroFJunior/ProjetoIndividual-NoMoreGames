@@ -41,16 +41,17 @@ CREATE TABLE conquista (
 idConquista int primary key auto_increment,
 nome varchar(45),
 raridade varchar(45),
+url varchar(45),
 	constraint chkRaridade
 	check (raridade in ('Comum', 'Rara', 'Lendária')),
 descricao varchar(45)
 );
 
-INSERT INTO conquista (nome, raridade, descricao) VALUES
-	('Lab Rat', 'Comum', 'Desbravou o labirinto do rato em Rat Lab'),
-	('Quadrático!', 'Comum', 'Venceu a CPU no connect 4'),
-	('Ssssagaz', 'Lendária', 'Acabou com todas as frutas no Snaking'),
-	('Jackpot!', 'Comum', 'Sobreviveu todas as fases em Slotknight');
+INSERT INTO conquista (nome, raridade, url, descricao) VALUES
+	('Lab Rat', 'Comum', '/assets/icon/labratBadge.webp', 'Desbravou o labirinto do rato em Rat Lab'),
+	('Quadrático!', 'Comum', '/assets/icon/quadBadge.webp', 'Venceu a CPU no connect 4'),
+	('Ssssagaz', 'Lendária',  '/assets/icon/snakingBadge.webp', 'Acabou com todas as frutas no Snaking'),
+	('Jackpot!', 'Comum', '/assets/icon/jackpotBadge.webp', 'Sobreviveu todas as fases em Slotknight');
 
 CREATE TABLE usuario (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -80,6 +81,16 @@ result varchar(45),
     foreign key (fkJogo) references jogo(idJogo)
 );
 
+CREATE TABLE registroConquista (
+	fkUsuario int,
+    fkConquista int,
+    idRegistro int,
+    primary key (fkUsuario, fkConquista, idRegistro),
+	dtConquista date,
+		foreign key (fkUsuario) references usuario(id),
+        foreign key (fkConquista) references conquista(idConquista)
+);
+
 -- Partidas de Alice
 INSERT INTO partida (fkUsuario, fkJogo, idPartida, score, dtPartida, result) VALUES
 (1, 1, 1, 120, CURRENT_DATE() - INTERVAL 2 DAY, 'Venceu'),
@@ -100,15 +111,15 @@ INSERT INTO partida (fkUsuario, fkJogo, idPartida, score, dtPartida, result) VAL
 (3, 4, 1, 100, CURRENT_DATE(), 'Venceu');
 
 
-CREATE TABLE registroConquista (
-fkUsuario int,
-fkConquista int,
-idRegistro int,
-	PRIMARY KEY (fkUsuario, fkConquista, idRegistro),
-dtConquista date,
-	foreign key (fkUsuario) references usuario(id),
-    foreign key (fkConquista) references conquista(idConquista)
-);
+INSERT INTO registroConquista (fkUsuario, fkConquista, idRegistro, dtConquista) VALUES
+(1,1,1,CURRENT_DATE() - INTERVAL 3 DAY),
+(1,2,2,CURRENT_DATE() - INTERVAL 1 DAY),
+(1,4,3,CURRENT_DATE()),
+(2,1,1,CURRENT_DATE() - INTERVAL 2 DAY),
+(2,3,2,CURRENT_DATE() - INTERVAL 1 DAY),
+(3,2,1,CURRENT_DATE() - INTERVAL 4 DAY),
+(3,3,2,CURRENT_DATE() - INTERVAL 1 DAY),
+(3,4,3,CURRENT_DATE());
 
 select * from usuario;
 select * from usuario join avatar on fkavatar = idavatar;
@@ -165,5 +176,9 @@ SELECT
     ) * 100 AS porcentagem;
 
 
+SELECT c.idConquista, c.nome, c.raridade, c.descricao, c.url from conquista c  -- Select todas as conquistas de um usuario;
+	join registroConquista r on fkConquista = idConquista
+    join usuario u on fkUsuario = id
+		where id = 2;
 
 	
