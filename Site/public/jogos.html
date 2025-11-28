@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>No More Games</title>
-    <link rel="shortcut icon" href="assets/icon/faviconNMG.png" type="image/x-icon">    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="assets/icon/faviconNMG.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/jogos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Major+Mono+Display&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <main>
         <div class="navbar">
@@ -21,7 +27,7 @@
             </li>
             <div class="navRight" id="navRightGuest">
                 <a class="loginButton" href="./login.html">LOG IN</a>
-                <a class="registerButton"  href="./cadastro.html">CADASTRE-SE</a>
+                <a class="registerButton" href="./cadastro.html">CADASTRE-SE</a>
             </div>
             <div class="navRight" id="navRightUser">
                 <div class="userIcon" onclick="dropDown()">
@@ -35,15 +41,20 @@
             <div class="botaoDropdown" id="Sair" onclick="deslogar()">Sair</div>
         </div>
         <div class="bannerPrincipal" id="jogos">
-
         </div>
-
         <div class="corpoMain">
+            <div class="ctaMeio">
+                A <span>NO MORE GAMES</span> ACREDITA QUE O MELHOR JEITO DE SE APRENDER QUALQUER CONCEITO É TENTANDO
+                CRIAR UM JOGO COM ELE, ENTÃO...
+            </div>
             <div class="conteudoMain">
-
+                <div id="containerJogo">
+                    <button onclick="draw(`containerJogo`)">abrir jogo</button>
+                </div>
             </div>
         </div>
-        
+
+
         <div class="footer">
             <div class="footerEsquerda">
                 © 2025 Mauro Junior. Todos os direitos reservados.
@@ -61,36 +72,42 @@
             </div>
         </div>
     </main>
+
+    <script src="./js/slotknight.js"></script>
 </body>
+
 </html>
 <script>
-        window.onload = () => {
-      if(sessionStorage.ID_USUARIO) {
-        navRightGuest.style.display = 'none'
-        navRightUser.style.display = 'block'
-        userAvatar.src = sessionStorage.AVATAR;
-        userName.innerHTML = sessionStorage.NOME_USUARIO
-      } else {
-        window.location = '/login.html'
-      }
+    window.onload = () => {
+        if (sessionStorage.ID_USUARIO) {
+            navRightGuest.style.display = 'none'
+            navRightUser.style.display = 'block'
+            userAvatar.src = sessionStorage.AVATAR;
+            userName.innerHTML = sessionStorage.NOME_USUARIO
+        } else {
+            window.location = '/login.html'
+        }
+
     }
 
-    function dropDown(){
+    
+
+    function dropDown() {
         dropDownUser.style.display = 'flex'
         if (dropDownUser.style.marginTop === '7%') {
             dropDownUser.style.marginTop = '0';
         } else {
             dropDownUser.style.marginTop = '7%';
         }
-        
+
     }
 
-    function perfil(){
+    function perfil() {
         window.location = './dashboard/dashboard.html'
     }
 
-    function deslogar(){
-      sessionStorage.clear();
-      window.location = './index.html';
+    function deslogar() {
+        sessionStorage.clear();
+        window.location = './index.html';
     }
 </script>
