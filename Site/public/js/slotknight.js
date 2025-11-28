@@ -5,6 +5,7 @@ var faseAtual = 0;
 var icons = ['../assets/slotKnight/x.jpg', '../assets/slotKnight/bau.jpg', '../assets/slotKnight/rest.jpg', '../assets/slotKnight/combat.jpg', '../assets/slotKnight/boss.jpg']
 var tela = `
 <div class="tela" id="tela">
+    <div class="slotMachine">
         <div class="slot">
             <img id="1" src="" alt="">
         </div>
@@ -14,15 +15,28 @@ var tela = `
         <div class="slot">
             <img id="3" src="../assets/slotKnight/boss.jpg" alt="">
         </div>
+    </div>
+    <button onclick="roll()" id="rolar">Rolar</button>
+    <button onclick="gotoFase()" id="fase" style="display: none;">Próxima fase</button>
+    <div id="msg"></div>
 </div>
-    <div id="rest" style="display: none;">Descanso!</div>
-    <div id="chest" style="display: none;">Loot!</div>
-    <div id="combat" style="display: none;">Combate!</div>
-    <div id="boss" style="display: none;">Boss!</div>
-    <br><br>
-    <button onclick="roll()" id="rolar">Rolar</button><br>
-    <button onclick="gotoFase()" id="fase" style="display: none;">Próxima fase</button><br>
-    <div id="msg"></div>`
+    <div id="rest" style="display: none;">
+    <button onclick="gotoFase()">Próxima fase</button>
+    Descanso!
+    </div>
+    <div id="chest" style="display: none;">
+    <button onclick="gotoFase()">Próxima fase</button>
+    Loot!
+    </div>
+    <div id="combat" style="display: none;">
+    <button onclick="gotoFase()">Próxima fase</button>
+    Combate!
+    </div>
+    <div id="boss" style="display: none;">
+    <button onclick="gotoFase()">Próxima fase</button>
+    Boss!</div>
+    
+    `
 
 function draw(idDiv) {
 
@@ -74,10 +88,6 @@ function roll() {
 
         res = [randomizarIndex(), randomizarIndex(), randomizarIndex()];
 
-
-        while (!res.includes(3)) {
-            res = [randomizarIndex(), randomizarIndex(), randomizarIndex()];
-        }
         telaAtual = res;
 
         var animar = setInterval(() => {

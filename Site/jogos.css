@@ -1,0 +1,45 @@
+.conteudoJogos {
+    width: 100%;
+    height: 80vh;
+    background-color: #091520;
+    margin-bottom: 3%;
+    box-shadow: 0 0 2vh 1vh rgba(0, 0, 0, 0.274);
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+.jogo {
+    width: 80%;
+    height: 80%;
+    border-radius: 1vh;
+    background-color: white;
+    align-self: center;
+    justify-self: center;
+    transition: transform .2s ease-out;
+}
+
+.jogo:hover {
+    transform: scale(1.05);
+    
+}
+
+#maze {
+    background-image: url("https://s3-us-west-2.amazonaws.com/courses-images-archive-read-only/wp-content/uploads/sites/902/2015/02/23224812/CNX_Psych_06_03_Ratmaze.jpg");
+    background-size: cover;
+}
+
+#connect {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-FGsO6oCHHZI5MHRXDfFLxrZHX1OUO_yqPA&s");
+    background-size: cover;
+}
+
+#snake {
+    background-image: url("https://globalradiancereview.com/public/assets/media/news_image/2025-05-29_1748516608.png");
+    background-size: cover;
+    background-position: 0 -10vh;
+}
+
+#tictac {
+    background-image: url("https://us1.discourse-cdn.com/bubble/original/3X/4/c/4c583a00f6a44768aa32b706547ae96f0162f1a3.png");
+    background-size: cover;
+}

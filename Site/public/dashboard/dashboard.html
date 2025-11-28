@@ -147,14 +147,11 @@
 
     /* FETCH PARA QUANTIDADE DE JOGOS */
     var maisJogados = [];
-    fetch("/dashboard/buscarMaisJogados", {
-        method: "POST",
+    fetch(`/dashboard/buscarMaisJogados/${sessionStorage.ID_USUARIO}`, {
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            id: sessionStorage.ID_USUARIO,
-        })
+        }
     }).then(function (resposta) {
         console.log("ESTOU NO THEN DO entrar()!")
 
@@ -203,14 +200,11 @@
 
     /* FETCH PARA HIGHSCORE */
     var highscoreSemana = [];
-    fetch("/dashboard/buscarHighscoreOverview", {
-        method: "POST",
+    fetch(`/dashboard/buscarHighscoreOverview/${sessionStorage.ID_USUARIO}`, {
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            id: sessionStorage.ID_USUARIO,
-        })
+        }
     }).then(function (resposta) {
         console.log("ESTOU NO THEN DO entrar()!")
 
@@ -266,14 +260,11 @@
 
     /* FETCH PARA CONQUISTAS */
     var conquistas = [];
-    fetch("/dashboard/buscarConquistas", {
-        method: "POST",
+    fetch(`/dashboard/buscarConquistas/${sessionStorage.ID_USUARIO}`, {
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            id: sessionStorage.ID_USUARIO,
-        })
+        }
     }).then(function (resposta) {
         console.log("ESTOU NO THEN DO entrar()!")
 

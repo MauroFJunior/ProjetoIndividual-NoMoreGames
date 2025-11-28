@@ -1,8 +1,7 @@
-var usuarioModel = require("../models/usuarioModel");
 var dashModel = require("../models/dashModel");
 
 function buscarMaisJogados(req, res){
-    var id = req.body.id;
+    var id = req.params.id;
     
     if (id == undefined) {
         res.status(400).send("ID UNDEFINED!");
@@ -19,7 +18,7 @@ function buscarMaisJogados(req, res){
 }
 
 function buscarHighscoreOverview(req, res){
-    var id = req.body.id;
+    var id = req.params.id;
     
     if (id == undefined) {
         res.status(400).send("ID UNDEFINED!");
@@ -36,7 +35,7 @@ function buscarHighscoreOverview(req, res){
 }
 
 function buscarConquistas(req, res){
-    var id = req.body.id;
+    var id = req.params.id;
     
     if (id == undefined) {
         res.status(400).send("ID UNDEFINED!");
