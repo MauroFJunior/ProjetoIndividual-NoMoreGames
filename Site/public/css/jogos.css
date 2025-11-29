@@ -1,6 +1,6 @@
 .conteudoMain {
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     background-color: #091520;
 }
 
@@ -8,6 +8,31 @@
     width: 100%;
     height: 100%;
     background-color: rgba(255, 255, 255, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#containerJogo button {
+    font-weight: bolder;
+    font-family: "ELMS SANS";
+    border-radius: 3vh;
+    color: #7DC5FC;
+    border: .3vh inset #7DC5FC;
+    width: 20vh;
+    height: 8vh;
+    background-color: rgba(245, 222, 179, 0);
+    transition: filter 0.2s ease;
+    cursor: pointer;
+    font-size: 2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#containerJogo button:hover {
+    filter: brightness(1.2);
 }
 
 .slotMachine {
@@ -26,7 +51,62 @@
     align-items: center;
     justify-content: center;
     gap: .5%;
+    font-family: "elms sans";
+    color: #ccc;
+    transition: filter 1s ease;
 }
+
+.navbarJogo {
+    color: #ccc;
+    font-family: "Elms sans";
+    width: 100%;
+    height: 10vh;
+    background-color: #0E202F;
+    border: 2px #091520 solid;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.navbarJogo img {
+    width: 3vh;
+    height: 3vh;
+}
+
+.vida {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.escudo {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ataque {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mapa {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.mapa img {
+    flex: 1;
+    max-width: 3vh;
+    max-height: 3vh;
+}
+
 
 .slot {
     width: 30%;
@@ -45,3 +125,40 @@ img {
     height: auto;
     transition: transform 0.1s linear;
 }
+
+.fase {
+    width: 70%;
+    height: 80%;
+    margin: 4% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    border-radius: 1vh;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.415);
+
+}
+
+.fase img {
+    width: 100%;
+    height: 60%;
+}
+
+.containerFase {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    text-align: center;
+    font-family: "Elms sans";
+}
+
+.fase #buttonFase {
+    width: fit-content;
+    border: none;
+    margin-bottom: 2%;
+}
+
