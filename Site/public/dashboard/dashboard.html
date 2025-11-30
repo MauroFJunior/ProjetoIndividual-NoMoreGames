@@ -88,7 +88,7 @@
                         <canvas id="chartTendency"></canvas>
                     </div>
                 </div>
-                
+
             </div>
         </div>
 
@@ -121,7 +121,7 @@
             userAvatar.src = '.' + sessionStorage.AVATAR;
             iconUser.src = '.' + sessionStorage.AVATAR;
             username.innerHTML = sessionStorage.NOME_USUARIO;
-            userName.innerHTML = sessionStorage.NOME_USUARIO 
+            userName.innerHTML = sessionStorage.NOME_USUARIO
         }
     }
 
@@ -239,18 +239,22 @@
         }
 
         totalScore.innerHTML = sum;
-        var variacao = ((Number(json[json.length - 1].highscore) - Number(json[json.length - 2].highscore)) / Number(json[json.length - 2].highscore) * 100).toFixed(2);
 
-        if (variacao > 0) {
-            tendencia.innerHTML = '↑' + variacao + '%';
-            tendencia.style.color = 'greenyellow'
-        } else if (variacao <= 0) {
-            tendencia.innerHTML = '↓' + variacao + '%';
-            tendencia.style.color = 'red'
-        } else {
-            tendencia.innerHTML = '—';
-            tendencia.style.color = '#ccc'
+        tendencia.innerHTML = '—';
+        tendencia.style.color = '#ccc'
+
+        if (json.length > 1) {
+            var variacao = ((Number(json[json.length - 1].highscore) - Number(json[json.length - 2].highscore)) / Number(json[json.length - 2].highscore) * 100).toFixed(2);
+
+            if (variacao > 0) {
+                tendencia.innerHTML = '↑' + variacao + '%';
+                tendencia.style.color = 'greenyellow'
+            } else if (variacao <= 0) {
+                tendencia.innerHTML = '↓' + variacao + '%';
+                tendencia.style.color = 'red'
+            }
         }
+
 
 
     }).catch(function (erro) {
@@ -324,7 +328,7 @@
 
     const ctx2 = document.getElementById('chartTendency');
     const grpHighscoreSemana = new Chart(ctx2, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: ['18/11', '19/11', '20/11', '21/11', '22/11'],
             datasets: [{

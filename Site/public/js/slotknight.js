@@ -1,5 +1,7 @@
 var vidaMax = 100;
-var vidaAtual = 1;
+var vidaAtual = 100;
+var bossHP = 0;
+var lastMoves = [];
 var escudo = 0;
 var ataque = 10;
 var rodada = 1;
@@ -26,7 +28,7 @@ var itensLoot = [
     ["Cajado de Ébano de Tsuvago", 30, 0, 0], ["Cota de Malha Leve de Aplou", 0, 20, 10], ["Anel da Determinação de Gobedi", 8, 8, 25],
     ["Machado de Batalha de Emasthu", 25, 0, 5], ["Tiara Élfica de Vanagoni", 5, 18, 15], ["Diadema de Rodalen", 0, 12, 30],
     ["Manopla de Ferro de Zoken", 15, 10, 0], ["Medalhão de Amanir", 20, 0, 15], ["Capacete com Chifres de Asclu", 10, 15, 10],
-    ["Gema de Vitalidade de Loesing", 0, 0, 30], ["Bolsa de guardar de Rikec", 5, 5, 30], ["Sapatos Alados de Eafarl", 10, 10, 10], 
+    ["Gema de Vitalidade de Loesing", 0, 0, 30], ["Bolsa de guardar de Rikec", 5, 5, 30], ["Sapatos Alados de Eafarl", 10, 10, 10],
     ["Navalha de Duraade", 30, 0, 0]
 ];
 
@@ -79,21 +81,33 @@ var tela = `
     </div>
     <div class="fase" id="boss" style="display: none;">
     <img src="../assets/slotKnight/bossfase.gif">
-    <div class="containerFase">
-    <button id="buttonFase" onclick="gotoFase()">Seguir em frente...</button>
-    Boss!
+    <div class="containerFase" id="msgBoss">
+    </div>
+    </div>
+    <div class="fase" id="gameover" style="display: none;">
+    <img src="../assets/slotKnight/overfase.gif">
+    <div class="containerFase" id="msgOver">
     </div>
     </div>
     `
 
 
-function updateHUD() {
+function checkVida(dano) {
+    if (vidaAtual - dano <= 0) {
+        gotoOver();
+    }
+}
+
+function updateHUD(mapa) {
     score.innerHTML = `Pontuação = ${pontuacao}`;
     hudVida.innerHTML = `<img src="../assets/slotKnight/vida.webp"> Vida: ${vidaAtual}/${vidaMax}`;
     hudEscudo.innerHTML = `<img src="../assets/slotKnight/escudo.png"> Escudo: ${escudo}`;
     hudAtaque.innerHTML = `<img src="../assets/slotKnight/ataque.png"> Ataque: ${ataque}`;
 
-    hudMapa.innerHTML += `<img style="border: 1px solid black" src="${icons[telaAtual[faseAtual]]}" alt="">`;
+    if (mapa) {
+        hudMapa.innerHTML += `<img style="border: 1px solid black" src="${icons[telaAtual[faseAtual]]}" alt="">`;
+    }
+    
 }
 
 function getLoot(atq, def, hp) {
@@ -103,13 +117,28 @@ function getLoot(atq, def, hp) {
     vidaAtual += hp;
 }
 
-function gotoRest(tela, chest, rest, combat, boss) {
+function gotoOver() {
     var chest = document.getElementById("chest");
     var rest = document.getElementById("rest");
     var combat = document.getElementById("combat");
     var boss = document.getElementById("boss");
     var tela = document.getElementById("tela");
 
+    tela.style.display = "none";
+    chest.style.display = "none";
+    rest.style.display = "none";
+    combat.style.display = "none";
+    boss.style.display = "none";
+    gameover.style.display = "flex";
+
+    msgOver.innerHTML = `Sua aventura chegou ao fim... Seu progresso ficará para sempre marcado como um aviso para os próximos aventureiros. <br><br>
+    Bom descanso.`;
+
+    mandarproBanco(pontuacao, "Perdeu");
+
+}
+
+function gotoRest(tela, chest, rest, combat, boss) {
     var percentage = Math.floor(Math.random() * 23 + 1) / 100;
     var cura = Math.floor(vidaMax * percentage) + 20;
 
@@ -128,7 +157,7 @@ function gotoRest(tela, chest, rest, combat, boss) {
     }
 
     pontuacao += 100;
-    updateHUD();
+    updateHUD(1);
     faseAtual++
 }
 
@@ -167,7 +196,8 @@ function gotoCombat(tela, chest, rest, combat, boss) {
         pontuacao += 400;
     }
 
-    updateHUD();
+    checkVida(dano)
+    updateHUD(1);
     faseAtual++
 }
 
@@ -186,18 +216,117 @@ function gotoChest(tela, chest, rest, combat, boss) {
     Você encontrou <span id="lootTxt" title="+${loot[1]} Ataque | +${loot[2]} Defesa | +${loot[3]} Vida Max." style="cursor: pointer"></span>`;
 
     var animar = setInterval(() => {
-            lootTxt.innerHTML = `[${itensLoot[Math.floor(Math.random() * itensLoot.length)][0]}]!`;
-        }, 50)
+        lootTxt.innerHTML = `[${itensLoot[Math.floor(Math.random() * itensLoot.length)][0]}]!`;
+    }, 50)
 
-        setTimeout(() => {
-            clearInterval(animar);
-            lootTxt.innerHTML = texto;
-        }, 2000)
+    setTimeout(() => {
+        clearInterval(animar);
+        lootTxt.innerHTML = texto;
+    }, 2000)
 
     getLoot(loot[1], loot[2], loot[3])
     pontuacao += 1000;
-    updateHUD();
+    updateHUD(1);
     faseAtual++
+
+}
+
+function gotoBoss(tela, chest, rest, combat, boss) {
+    tela.style.display = "none";
+    chest.style.display = "none";
+    rest.style.display = "none";
+    combat.style.display = "none";
+    boss.style.display = "flex";
+
+    bossHP = 40 * rodada;
+
+    msgBoss.innerHTML = `O fim do corredor está no horizonte, mas uma figura bloqueia seu caminho... <br>
+    O enorme guardião da masmorra te encara fixamente, te desafiando a continuar com sua caminhada... <br>
+    O fim se aproxima. <br>
+    <button id="buttonFase" onclick="bossFight(0)">Aceitar o desafio</button>`;
+
+}
+
+function bossFight(move) {
+    var quotes =
+        [["furioso", "arrogante", "orgulhoso", "confiante"],
+        ["cauteloso", "meticuloso", "pensativo", "focado"]];
+    var rand = Math.floor(Math.random() * quotes[0].length);
+    
+    var randMove = rand % 2 // 0 atacar, 1 defender;
+    var len = lastMoves.length
+
+    if (len >= 2 && lastMoves[len - 1] == randMove && lastMoves[len-2] == randMove) { // evitar combos > 2
+        bossMove = 1 - randMove;
+    } else bossMove = randMove;
+
+    
+
+    if (move == 0) {
+        msgBoss.innerHTML = `Você se aproxima do gigante com confiança, ele te recebe com aspecto ${quotes[bossMove][rand]}. <br>
+        <div class="hudCombate">
+        <button id="buttonFase" onclick="bossFight(1)">Atacar</button>
+        <button id="buttonFase" onclick="bossFight(2)">Defender</button>
+        </div>`
+    } else if (move == 1) {
+        if ((bossHP - ataque > 0) && bossMove == 0) {
+            lastMoves.push(bossMove)
+            var dano = Math.max(20,((vidaAtual * ((Math.floor(Math.random() * 2 + 1)) / 10))) - escudo);
+            checkVida(dano)
+            bossHP = bossHP - ataque;
+            vidaAtual -= dano;
+            msgBoss.innerHTML = `Vocês trocam ataques furiosos. Ele te encara ${quotes[bossMove][rand]}. <br>
+            -${dano} de vida. Causou ${ataque} de dano.
+            <div class="hudCombate">
+            <button id="buttonFase" onclick="bossFight(1)">Atacar</button>
+            <button id="buttonFase" onclick="bossFight(2)">Defender</button>
+            </div>`
+            pontuacao += 1000 - 1000 * (dano/100)
+            updateHUD(0)
+        } else if ((bossHP - ataque/1.5 > 0) && bossMove == 1) { 
+            lastMoves.push(bossMove)
+            bossHP -= Math.floor(ataque / 1.5);
+            msgBoss.innerHTML = `Você ataca ferozmente, mas o inimigo se defende... Ele te encara ${quotes[bossMove][rand]}. <br>
+            Causou ${Math.floor(ataque / 1.5)} de dano.
+            <div class="hudCombate">
+            <button id="buttonFase" onclick="bossFight(1)">Atacar</button>
+            <button id="buttonFase" onclick="bossFight(2)">Defender</button>
+            </div>`
+            pontuacao += 1000
+            updateHUD(0)
+        } else {
+            msgBoss.innerHTML = `O gigante colapsa na sua frente. Você emerge vitorioso...`
+            //boss.innerHTML += `<button id="buttonFase" onclick="gotoFase()">Seguir em frente...</button>`
+            mandarproBanco(pontuacao, "Venceu");
+            updateHUD(0)
+        }
+
+    } else {
+        if (bossMove == 0) {
+            lastMoves.push(bossMove)
+            var dano = Math.max(20,((vidaAtual * ((Math.floor(Math.random() * 2 + 1)) / 10))) - escudo * 2);
+            checkVida(dano)
+            vidaAtual -= dano;
+            msgBoss.innerHTML = `Você detecta o perigo e se defende do ataque. Ele te encara ${quotes[bossMove][rand]}. <br>
+            -${dano} de vida.
+            <div class="hudCombate">
+            <button id="buttonFase" onclick="bossFight(1)">Atacar</button>
+            <button id="buttonFase" onclick="bossFight(2)">Defender</button>
+            </div>`
+            pontuacao += 1000 - 1000 * (dano/100)
+            updateHUD(0)
+        } else {
+            lastMoves.push(bossMove)
+            msgBoss.innerHTML = `Vocês se encaram saudosamente, respeitando a ameaça um do outro. Ele te encara ${quotes[bossMove][rand]}. <br>
+            <div class="hudCombate">
+            <button id="buttonFase" onclick="bossFight(1)">Atacar</button>
+            <button id="buttonFase" onclick="bossFight(2)">Defender</button>
+            </div>`
+            pontuacao += 1000
+            updateHUD(0)
+        }
+    }
+
     
 }
 
@@ -314,11 +443,6 @@ function gotoFase() {
         rest.style.opacity = aux
     }, 50)
 
-
-
-
-
-
     if (faseAtual > 2) {
         chest.style.display = "none";
         rest.style.display = "none";
@@ -337,16 +461,109 @@ function gotoFase() {
         } else if (telaAtual[faseAtual] == 3) {
             gotoCombat(tela, chest, rest, combat, boss);
         } else {
-            tela.style.display = "none";
-            chest.style.display = "none";
-            rest.style.display = "none";
-            combat.style.display = "none";
-            boss.style.display = "flex";
-            updateHUD();
+            gotoBoss(tela, chest, rest, combat, boss);
+            updateHUD(1);
             faseAtual = 3;
         }
 
 
     }
 
+}
+
+function mandarproBanco(pontos, resultado) {
+    if(resultado == "Venceu") {
+        fetch("/jogos/cadastrarPartida", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        idServer: sessionStorage.ID_USUARIO,
+        jogoServer: 4,
+        pontuacaoServer: pontos,
+        resultadoServer: resultado
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          
+            console.log("Partida cadastrada.")
+
+        } else { // REVISAR ISSO, PODE OFUSCAR ERROS DE CONEXÃO DO BD.
+        
+          throw "Houve um erro ao tentar realizar o cadastro!";
+          
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+      fetch("/jogos/cadastrarConquista", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        idServer: sessionStorage.ID_USUARIO,
+        conqServer: 4,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          
+            console.log("Conquista cadastrada.")
+
+        } else { // REVISAR ISSO, PODE OFUSCAR ERROS DE CONEXÃO DO BD.
+        
+          throw "Houve um erro ao tentar realizar o cadastro!";
+          
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    } else {
+
+    fetch("/jogos/cadastrarPartida", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        idServer: sessionStorage.ID_USUARIO,
+        jogoServer: 4,
+        pontuacaoServer: pontos,
+        resultadoServer: resultado
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          
+            console.log("Partida cadastrada.")
+
+        } else { // REVISAR ISSO, PODE OFUSCAR ERROS DE CONEXÃO DO BD.
+        
+          throw "Houve um erro ao tentar realizar o cadastro!";
+          
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+    }
 }
