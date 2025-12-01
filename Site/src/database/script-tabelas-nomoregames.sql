@@ -84,8 +84,7 @@ result varchar(45),
 CREATE TABLE registroConquista (
 	fkUsuario int,
     fkConquista int,
-    idRegistro int,
-    primary key (fkUsuario, fkConquista, idRegistro),
+    primary key (fkUsuario, fkConquista),
 	dtConquista date,
 		foreign key (fkUsuario) references usuario(id),
         foreign key (fkConquista) references conquista(idConquista)
@@ -111,15 +110,15 @@ INSERT INTO partida (fkUsuario, fkJogo, idPartida, score, dtPartida, result) VAL
 (3, 4, 1, 100, CURRENT_DATE(), 'Venceu');
 
 
-INSERT INTO registroConquista (fkUsuario, fkConquista, idRegistro, dtConquista) VALUES
-(1,1,1,CURRENT_DATE() - INTERVAL 3 DAY),
-(1,2,2,CURRENT_DATE() - INTERVAL 1 DAY),
-(1,4,3,CURRENT_DATE()),
-(2,1,1,CURRENT_DATE() - INTERVAL 2 DAY),
-(2,3,2,CURRENT_DATE() - INTERVAL 1 DAY),
-(3,2,1,CURRENT_DATE() - INTERVAL 4 DAY),
-(3,3,2,CURRENT_DATE() - INTERVAL 1 DAY),
-(3,4,3,CURRENT_DATE());
+INSERT INTO registroConquista (fkUsuario, fkConquista, dtConquista) VALUES
+(1,1,CURRENT_DATE() - INTERVAL 3 DAY),
+(1,2,CURRENT_DATE() - INTERVAL 1 DAY),
+(1,4,CURRENT_DATE()),
+(2,1,CURRENT_DATE() - INTERVAL 2 DAY),
+(2,3,CURRENT_DATE() - INTERVAL 1 DAY),
+(3,2,CURRENT_DATE() - INTERVAL 4 DAY),
+(3,3,CURRENT_DATE() - INTERVAL 1 DAY),
+(3,4,CURRENT_DATE());
 
 select * from usuario;
 select * from usuario join avatar on fkavatar = idavatar;
@@ -131,7 +130,7 @@ CREATE VIEW quant_partidas_vw AS -- View que soma as partidas para retornar qtd 
 			group by u.id, j.idJogo;
 
 select idJogo, numPartidas from quant_partidas_vw where id = 3 and idJogo = 2; -- Select qnt partidas de um jogo e usuario.
-select jogo, sum(numPartidas) as totalJogos from quant_partidas_vw where id = 3 group by idJogo; -- Select qnt de partidas de todos os jogos de um usuario.
+select jogo, sum(numPartidas) as totalJogos from quant_partidas_vw where id = 4 group by idJogo; -- Select qnt de partidas de todos os jogos de um usuario.
 
 CREATE VIEW score_dia_vw as -- View que soma os scores com base no dia.
 	select u.id, j.idJogo, p.dtPartida, p.score
