@@ -6,12 +6,58 @@
 
 #containerJogo {
     width: 100%;
-    height: 100%;
+    height: 95%;
+    max-height: 100vh;
     background-color: rgba(255, 255, 255, 0);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.gameSelect {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+
+.gameCard {
+    width: 40%;
+    height: 60%;
+    background-color: #0E202F;
+    border-radius: 1vh;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.37);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    transition: filter, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.gameCard:hover {
+    filter: brightness(1.2);
+    transform: scale(1.05);
+}
+
+.gameCard img {
+    height: 80%;
+    border-top-left-radius: 1vh;
+    border-top-right-radius: 1vh;
+    
+}
+
+.gameCardTitle {
+    color: #ccc;
+    height: 10vh;
+    font-family: "elms sans";
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #containerJogo button {
@@ -161,4 +207,58 @@ img {
     border: none;
     margin-bottom: 2%;
 }
+
+
+/* rat lab */
+
+#timer {
+    width: 100%;
+    height: 10vh;
+    margin-bottom: -5%;
+    color: #ccc;
+    font-family: "elms sans";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#telaRat {
+    margin-top: 5%;
+    margin-right: 3%;
+    display: grid;
+    height: 100%;
+    width: 50%;  /* ou 100% */
+    background-size: 15%;
+}
+
+.caminho {
+    aspect-ratio: 1/1;
+    background-color: #09152000;
+    background-image: url("..//assets/labRat/path.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.jogador {
+    aspect-ratio: 1/1;
+    background-image: url("../assets/labRat/rat.png"), url("..//assets/labRat/path.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.rachado {
+    aspect-ratio: 1/1;
+    background-image: url("../assets/labRat/crack.png"), url("..//assets/labRat/path.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.queijo {
+    aspect-ratio: 1/1;
+    background-image: url("../assets/labRat/cheese.png"), url("..//assets/labRat/path.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+
 

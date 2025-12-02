@@ -331,7 +331,7 @@ function bossFight(move) {
 }
 
 
-function draw(idDiv) {
+function drawSlotknight(idDiv) {
     var div = document.getElementById(`${idDiv}`);
     div.innerHTML = tela;
 

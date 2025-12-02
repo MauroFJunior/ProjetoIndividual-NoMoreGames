@@ -43,13 +43,22 @@
         <div class="bannerPrincipal" id="jogos">
         </div>
         <div class="corpoMain">
-            <div class="ctaMeio">
-                A <span>NO MORE GAMES</span> ACREDITA QUE O MELHOR JEITO DE SE APRENDER QUALQUER CONCEITO É TENTANDO
-                CRIAR UM JOGO COM ELE, ENTÃO...
-            </div>
             <div class="conteudoMain">
                 <div id="containerJogo">
-                    <button onclick="draw(`containerJogo`)">abrir jogo</button>
+                    <div class="gameSelect">
+                        <div class="gameCard" id="Slotknight" onclick="drawSlotknight(`containerJogo`)">
+                            <img src="../assets/slotKnight/slotknight.gif" alt="">
+                            <div class="gameCardTitle">
+                                Slotknight
+                            </div>
+                        </div>
+                        <div class="gameCard" id="ratLab" onclick="drawRatlab(`containerJogo`)">
+                            <img src="../assets/labrat/labrat.jpg" alt="">
+                            <div class="gameCardTitle">
+                                Rat Lab
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -74,6 +83,7 @@
     </main>
 
     <script src="./js/slotknight.js"></script>
+    <script src="./js/ratlab.js"></script>
 </body>
 
 </html>
@@ -90,7 +100,7 @@
 
     }
 
-    
+
 
     function dropDown() {
         dropDownUser.style.display = 'flex'
