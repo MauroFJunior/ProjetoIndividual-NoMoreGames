@@ -345,6 +345,7 @@ function randomizarIndex() {
 }
 
 function roll() {
+    botao = document.getElementById("fase")
     var aux = 0;
     faseAtual = 0;
     rolar.style.display = 'none';
@@ -371,7 +372,7 @@ function roll() {
                 document.getElementById(i).style.transform = `translateY(0px)`;
                 document.getElementById(i).src = icons[4]
             }
-            fase.style.display = 'block';
+            botao.style.display = "block"
         }, 2000)
 
         rodada++;
@@ -404,7 +405,7 @@ function roll() {
                 document.getElementById(i).style.transform = `translateY(0px)`;
                 document.getElementById(i).src = icons[res[i - 1]]
             }
-            fase.style.display = 'block';
+            botao.style.display = "block"
         }, 2000)
 
 

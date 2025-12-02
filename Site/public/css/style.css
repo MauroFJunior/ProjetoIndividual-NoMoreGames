@@ -238,15 +238,15 @@ input {
     color: white;
     text-align: justify;
     padding: 2%;
-    overflow-y: auto;
+    overflow: hidden;
     font-size: 2.2vh;
     line-height: 2.3vh;
     font-weight: 200;
 }
 
 .conteudoBanner2 span {
-    margin-left: 28%;
-    font-size: 1.8vh;
+    margin-left: 40%;
+    font-size: 1.4vh;
 }
 
 .conteudoBanner2 hr {

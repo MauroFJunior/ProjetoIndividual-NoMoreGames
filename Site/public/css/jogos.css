@@ -227,8 +227,9 @@ img {
     margin-right: 3%;
     display: grid;
     height: 100%;
-    width: 50%;  /* ou 100% */
+    width: 60%;
     background-size: 15%;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.427);
 }
 
 .caminho {
