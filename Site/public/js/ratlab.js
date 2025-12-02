@@ -165,7 +165,7 @@ function gameWin() {
     timer.style.display = "none";
     input.style.display = "none";
 
-    mandarproBanco(pontuacao, "Venceu")
+    mandarproBancoRat(pontuacao, "Venceu")
     }
 }
 
