@@ -25,7 +25,7 @@ var html = `
 var pontuacao = 10000;
 var timerInicial = 45000;
 var timer = 45000;
-var fase = 3;
+var fase = 0;
 var ganhou;
 var perdeu;
 var mapas =
@@ -109,7 +109,8 @@ function checkInput() {
 }
 
 function move(command) {
-
+    var input = document.getElementById("get_input")
+    input.value = ''
     ativo = true;
     for (let i = 0; i < command.length; i++) {
         setTimeout(() => checkCondition(command[i].toLowerCase()), i * 300);
@@ -117,7 +118,7 @@ function move(command) {
 }
 
 function gameOver() {
-    if (!ganhou) {
+    if (perdeu) {
     pontuacao = pontuacao / 5
     var aux = 1;
     gameover = document.getElementById("gameover")
@@ -148,7 +149,7 @@ function gameOver() {
 }
 
 function gameWin() {
-    if (!perdeu) {
+    if (ganhou) {
     clearInterval(window.timerDown)
     var aux = 1;
     gamewin = document.getElementById("gamewin");
@@ -213,6 +214,7 @@ function checkCondition(dir) {
             drawTela();
             gameWin();
         } else {
+            input = document.getElementById("get_input")
             var aux = 1;
             fase++;
             var telaRat = document.getElementById("telaRat");

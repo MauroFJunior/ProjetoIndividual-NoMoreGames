@@ -195,7 +195,7 @@ main {
 .graficosDash #graphTendency canvas {
     background-color: #091520;
     padding: 5%;
-    max-height: 85%;
+    max-height: 97%;
     border-bottom-left-radius: 1vh;
     border-bottom-right-radius: 1vh;
 }
